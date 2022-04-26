@@ -1,0 +1,27 @@
+{
+  "name": "teamprofile",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShaunSully88/TeamProfile.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShaunSully88/TeamProfile/issues"
+  },
+  "homepage": "https://github.com/ShaunSully88/TeamProfile#readme",
+  "dependencies": {
+    "inquirer": "^8.2.2",
+    "jest": "^28.0.0"
+  }
+}
