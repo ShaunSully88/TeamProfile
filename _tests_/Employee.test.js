@@ -16,6 +16,7 @@ const Employee = require('../lib/Employee.js');
 
  test('get employee email', () => {
      const employee = new Employee('Zuka', 9, 'bark@bark.com');
+     const email = employee.getEmail();
 
      expect(email).toBe('bark@bark.com');
  });
