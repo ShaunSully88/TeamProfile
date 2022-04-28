@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/ShaunSully88/TeamProfile#readme",
   "dependencies": {
-    "inquirer": "^8.2.2",
+    "inquirer": "^8.2.4",
     "jest": "^28.0.0"
   }
 }
