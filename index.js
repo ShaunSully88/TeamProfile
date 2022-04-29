@@ -4,7 +4,7 @@ const Employee = require('./lib/Employee.js');
 const Intern = require('./lib/Intern.js');
 const Engineer = require('./lib/Engineer.js');
 const Manager = require('./lib/Manager.js');
-const { urlToHttpOptions } = require('url');
+const generateHtml = require('./utils/generateHtml.js')
 
 //quesiton prompt for Manager information followed by options to add employees or finish application
 const ManagerData = () => {
@@ -29,32 +29,13 @@ const ManagerData = () => {
         type: 'input',
         name: 'officeNumber',
         message: "What is the Manager's office Number?"
-    },
-    {
-        type: 'list',
-        name: 'options',
-        message: 'Would you like to add an Engineer, add an Intern, or finish the application?',
-        choices: ['Add an Engineer', 'Add an Intern', 'Finish the application']
     }  
     )];
+    addRole();
 }
 
 //If user wants to Add Engineer, run Engineer Data function
-if (options.choices === 'Add an Engineer') {
-    EngineerData();
-} else {
-    init();
-};
-//If user wants to add Intern, run Intern Data function
-if (options.choices === 'Add an Intern') {
-    InternData();
-} else {
-    init();
-};
-//if user wants to finish application, run app init
-if (options.choices === 'Finish the Application') {
-    init();
-}
+
 
 const EngineerData = () => {
     return inquirer
@@ -85,6 +66,8 @@ const EngineerData = () => {
         message: "What is your Engineer's GitHub Username?"
     }  
     )];
+
+    addRole();
 };
 
 const InternData = () => {
@@ -115,10 +98,39 @@ const InternData = () => {
         name: 'school',
         message: "Where did the Intern go to school?"
     }  
+   )];
+   addRole();
+};
+
+const addRole = () => {
+    return inquirer
+    .prompt [(
+    {
+        type: 'list',
+        name: 'options',
+        message: 'Would you like to add an Engineer, add an Intern, or finish the application?',
+        choices: ['Add an Engineer', 'Add an Intern', 'Finish the application']
+    }  
     )];
 
-    ManagerData();
-    .then(answers)
+    if (addRole.answers === 'Add an Engineer')  {
+        return EngineerData();
+    } else {
+        init();
+    };
+    //If user wants to add Intern, run Intern Data function
+    if (options.choices === 'Add an Intern') {
+        return InternData();
+    } else {
+        init();
+    };
+    //if user wants to finish application, run app init
+    if (options.choices === 'Finish the Application') {
+        init();
+    }
+};
+    //ManagerData();
+    //.then(answers)
 
 // TODO: Create a function to write HTML file
 fs.writeFile('index.html', err => {
@@ -140,4 +152,4 @@ function init() {}
 
 // Function call to initialize app
 init();
-}
+
