@@ -7,7 +7,7 @@ const Manager = require('./lib/Manager.js');
 const generateHtml = require('./utils/generateHtml.js')
 
 //quesiton prompt for Manager information followed by options to add employees or finish application
-const ManagerData = () => {
+const ManagerData = questions = () => {
     return inquirer
     .prompt [(
     {
@@ -36,8 +36,7 @@ const ManagerData = () => {
 
 //If user wants to Add Engineer, run Engineer Data function
 
-
-const EngineerData = () => {
+const EngineerData = questions = () => {
     return inquirer
     .prompt [(
     {
@@ -70,7 +69,7 @@ const EngineerData = () => {
     addRole();
 };
 
-const InternData = () => {
+const InternData = questions = () => {
     return inquirer
     .prompt [(
     {
@@ -102,7 +101,9 @@ const InternData = () => {
    addRole();
 };
 
-const addRole = () => {
+// Prompted at end of each employee addition, user can select whether to
+// add employee or finish app. All answers are moved to generateHtml page
+const addRole = questions = () => {
     return inquirer
     .prompt [(
     {
@@ -111,16 +112,23 @@ const addRole = () => {
         message: 'Would you like to add an Engineer, add an Intern, or finish the application?',
         choices: ['Add an Engineer', 'Add an Intern', 'Finish the application']
     }  
-    )];
+    )]
 
-    if (addRole.answers === 'Add an Engineer')  {
-        return EngineerData();
+    .then (({ choice }) => {
+    if (choice === 'Add an Engineer')  {
+       return  EngineerData()
+       .then(EngineerData => {
+           const html = generateHtml(answers)
+       });
     } else {
         init();
     };
     //If user wants to add Intern, run Intern Data function
-    if (options.choices === 'Add an Intern') {
-        return InternData();
+    if (choice === 'Add an Intern') {
+        return InternData()
+        .then(InternData => {
+            const html = generateHtml(answers)
+        });
     } else {
         init();
     };
@@ -128,15 +136,15 @@ const addRole = () => {
     if (options.choices === 'Finish the Application') {
         init();
     }
-};
-    //ManagerData();
-    //.then(answers)
-
-// TODO: Create a function to write HTML file
-fs.writeFile('index.html', err => {
-    if (err) throw err;
-    console.log('Saved')
 });
+
+// TODO: Create a function to write README file
+    fs.writeFile('index.html', html, err => {
+        if (err) throw err;
+        console.log('Saved')
+    }
+  );
+};
 
 function writeToFile(filename, data) {
     fs.writeFile(filename, data, (err) => {
