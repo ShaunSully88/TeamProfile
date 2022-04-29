@@ -7,7 +7,7 @@ const Manager = require('./lib/Manager.js');
 const generateHtml = require('./utils/generateHtml.js')
 
 //quesiton prompt for Manager information followed by options to add employees or finish application
-const ManagerData = questions = () => {
+const ManagerData = () => {
     return inquirer
     .prompt [(
     {
@@ -36,7 +36,7 @@ const ManagerData = questions = () => {
 
 //If user wants to Add Engineer, run Engineer Data function
 
-const EngineerData = questions = () => {
+const EngineerData = () => {
     return inquirer
     .prompt [(
     {
@@ -69,7 +69,7 @@ const EngineerData = questions = () => {
     addRole();
 };
 
-const InternData = questions = () => {
+const InternData = () => {
     return inquirer
     .prompt [(
     {
@@ -115,6 +115,7 @@ const addRole = questions = () => {
     )]
 
     .then (({ choice }) => {
+        //if user wants to add enginner, run engineer function
     if (choice === 'Add an Engineer')  {
        return  EngineerData()
        .then(EngineerData => {
@@ -156,8 +157,8 @@ function writeToFile(filename, data) {
 
 
 // TODO: Create a function to initialize app
-function init() {}
+
 
 // Function call to initialize app
-init();
+ManagerData()
 
