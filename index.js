@@ -12,7 +12,7 @@ const ManagerData = () => {
     .prompt [(
     {
         type: 'input',
-        name: 'name',
+        name: 'employeeName',
         message: 'What is the name of the Manager?'
     },
     {
@@ -30,8 +30,12 @@ const ManagerData = () => {
         name: 'officeNumber',
         message: "What is the Manager's office Number?"
     }  
-    )];
-    addRole();
+    )]
+    return ManagerData()
+    .then(ManagerData =>{
+        const html = generateHtml (answers)
+    });
+    return addRole();
 }
 
 //If user wants to Add Engineer, run Engineer Data function
@@ -41,7 +45,7 @@ const EngineerData = () => {
     .prompt [(
     {
         type: 'input',
-        name: 'name',
+        name: 'employeeName',
         message: 'What is the name of the Engineer?'
     },
     {
@@ -65,8 +69,6 @@ const EngineerData = () => {
         message: "What is your Engineer's GitHub Username?"
     }  
     )];
-
-    addRole();
 };
 
 const InternData = () => {
@@ -74,7 +76,7 @@ const InternData = () => {
     .prompt [(
     {
         type: 'input',
-        name: 'name',
+        name: 'employeeName',
         message: 'What is the name of the Intern?'
     },
     {
@@ -113,7 +115,6 @@ const addRole = questions = () => {
         choices: ['Add an Engineer', 'Add an Intern', 'Finish the application']
     }  
     )]
-
     .then (({ choice }) => {
         //if user wants to add enginner, run engineer function
     if (choice === 'Add an Engineer')  {
