@@ -6,7 +6,16 @@ const Manager = require('./lib/Manager.js');
 //function test for Office Number
 test('gets office number', () => {
     const Manager = new Manager('Henry', 77, 'litter@litter.com', 666)
-    const officeNumber = manager.getOfficeNumber();
+    expect(manager.managerOfficeNumber).toEqual(666);
+});
 
-    expect(officeNumber).toBe(666);
+test('get Managers office number', () => {
+    const Manager = new Manager('Henry', 77, 'litter@litter.com', 666)
+    expect(manager.getOfficeNumber()).toBe(666);
+});
+
+test('gets Manager role', () => {
+    const Manager = new Manager('Henry', 77, 'litter@litter.com', 666)
+
+    expect(manager.getRole()).toBe('Manager');
 });

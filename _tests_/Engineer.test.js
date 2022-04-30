@@ -6,7 +6,18 @@ const Engineer = require('../lib.Engineer.js');
 //function test for Github Profile
 test('get github profile', () => {
     const engineer = new Engineer('Charles', 25, 'meow@meow.com', 'Litterbox');
-    const profile = engineer.getProfile();
 
-    expect(profile).toBe('Litterbox');
+    expect(engineer.engineerProfile).toEqual('Litterbox');
+});
+
+test('get Engineers github profile', () => {
+    const engineer = new Engineer('Charles', 25, 'meow@meow.com', 'Litterbox');
+
+    expect(engineer.getProfile()).toBe('Litterbox');
+});
+
+test('get Engineer's role', () => {
+    const engineer = new Engineer('Charles', 25, 'meow@meow.com', 'Litterbox');
+
+    expect(engineer.getRole()).toBe('Engineer');
 });
