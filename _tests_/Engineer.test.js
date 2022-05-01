@@ -1,5 +1,5 @@
 //linking to Engineer.js page
-const Engineer = require('../lib.Engineer.js');
+const Engineer = require('../lib/Engineer.js');
 
 //All quesitons asked on employee page, only one quesiton to ask Engineer
 
@@ -16,7 +16,7 @@ test('get Engineers github profile', () => {
     expect(engineer.getProfile()).toBe('Litterbox');
 });
 
-test('get Engineer's role', () => {
+test("get Engineer's role", () => {
     const engineer = new Engineer('Charles', 25, 'meow@meow.com', 'Litterbox');
 
     expect(engineer.getRole()).toBe('Engineer');
